@@ -51,4 +51,18 @@ public class Almoxarifado {
     public void setRepositor(List<Repositor> repositor) {
         this.repositor = repositor;
     }
+    //Metodos
+    public void adicionarProduto(Produto produto, int quantidade) {
+        produto.setQuantidade(produto.getQuantidade() + quantidade);
+        System.out.println(quantidade + " unidades adicionadas ao produto " + produto.getNomeProduto());
+    }
+
+    public void retirarProduto(Produto produto, int quantidade) {
+        if (produto.getQuantidade() >= quantidade) {
+            produto.setQuantidade(produto.getQuantidade() - quantidade);
+            System.out.println(quantidade + " unidades retiradas do produto " + produto.getNomeProduto());
+        } else {
+            System.out.println("Estoque insuficiente para retirar " + quantidade + " unidades do produto " + produto.getNomeProduto());
+        }
+    }
 }

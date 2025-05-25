@@ -31,4 +31,15 @@ public class Pessoa {
     public void setEmailCorporativo(String emailCorporativo) {
         this.emailCorporativo = emailCorporativo;
     }
+    //métodos
+    public void exibirInformacoes() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade);
+        System.out.println("Email: " + emailCorporativo);
+    }
+
+    public void atualizarEmail(String novoEmail) {
+        this.emailCorporativo = novoEmail;
+        System.out.println("Contato atualizado! novo e-mail: " + novoEmail);
+    }
 }

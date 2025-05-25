@@ -1,24 +1,23 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Amostra {
+public class Amostra{
     private int idAmostra;
     private String tipoAmostra;
     private Date dataColeta;
     private String nivelPrioridade;
     private Laboratorio laboratorio; //fk para laboratorio
-    private Almoxarifado almoxarifado; //fk para almoxarifado
     private Medico medico;
 
     //construtor
-    public Amostra(int idAmostra, String tipoAmostra, Date dataColeta, String nivelPrioridade, Laboratorio laboratorio, Almoxarifado almoxarifado, Medico medico) {
+    public Amostra(int idAmostra, String tipoAmostra, Date dataColeta, String nivelPrioridade, Laboratorio laboratorio, Medico medico) {
         this.idAmostra = idAmostra;
         this.tipoAmostra = tipoAmostra;
         this.dataColeta = dataColeta;
         this.nivelPrioridade = nivelPrioridade;
         this.laboratorio = laboratorio;
-        this.almoxarifado = almoxarifado;
         this.medico = medico;
     }
     //getters
@@ -36,9 +35,6 @@ public class Amostra {
     }
     public Laboratorio getLaboratorio() {
         return laboratorio;
-    }
-    public Almoxarifado getAlmoxarifado() {
-        return almoxarifado;
     }
     public Medico getMedico() {
         return medico;
@@ -59,10 +55,21 @@ public class Amostra {
     public void setLaboratorio(Laboratorio laboratorio) {
         this.laboratorio = laboratorio;
     }
-    public void setAlmoxarifado(Almoxarifado almoxarifado) {
-        this.almoxarifado = almoxarifado;
-    }
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
+    //Metodos
+    public void registrarColeta(Date data, int idAmostra) {
+        this.dataColeta = data;
+        this.idAmostra = idAmostra;
+        System.out.println("Coleta registrada em " + data + " com ID: " + getIdAmostra());
+    }
+    public void verificarValidade() {
+        if (this.dataColeta == null) {
+            System.out.println("Amostra não possui data de coleta registrada.");
+        } else {
+            System.out.println("Amostra coletada em " + this.dataColeta + " está válida para análise.");
+        }
+    }
+
 }

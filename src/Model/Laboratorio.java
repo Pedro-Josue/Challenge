@@ -47,4 +47,6 @@ public class Laboratorio {
     public void setAlmoxarifado(Almoxarifado almoxarifado) {
         this.almoxarifado = almoxarifado;
     }
+    //Metodos
+
 }

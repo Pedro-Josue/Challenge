@@ -32,4 +32,24 @@ public class Medico extends Pessoa{
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
+    //Metodos
+    @Override
+    public void exibirInformacoes() {
+        super.exibirInformacoes();
+        System.out.println("CRM: " + crm);
+        System.out.println("Especialidade: " + especialidade);
+    }
+    @Override
+    public void atualizarEmail(String novoEmail) {
+        super.atualizarEmail(novoEmail);
+    }
+
+    public void solicitarExame(Amostra amostra) {
+        System.out.println("Médico " + this.getNome() + " solicitou exame para a amostra de tipo: " + amostra.getTipoAmostra());
+    }
+
+    public void emitirDiagnostico(Amostra amostra) {
+        System.out.println("Médico " + this.getNome() + " emitiu diagnóstico baseado na amostra de tipo: " + amostra.getTipoAmostra());
+    }
+
 }
