@@ -6,7 +6,7 @@ public class Medico extends Pessoa{
     private String especialidade;
 
     //construtor
-    public Medico(String nome, int idade, String emailCorporativo, int idMedico, String crm, String especialidade) {
+    public Medico(String nome, String idade, String emailCorporativo, int idMedico, String crm, String especialidade) {
         super(nome, idade, emailCorporativo);
         this.idMedico = idMedico;
         this.crm = crm;

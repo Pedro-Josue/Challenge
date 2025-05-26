@@ -36,11 +36,12 @@ public class Main {
         Laboratorio lab3 = new Laboratorio(idLab3, "12345942", 100, "Analise Fezes", almoxarifado2);
         laboratorios.add(lab1);
         laboratorios.add(lab2);
-        System.out.println("Sistema sem nome");
+        System.out.println("Bem-Vindo ao StockEasy!");
         //sistema de menu basico, onde o usuario escolhe a opção do menu
         while(true){
+            System.out.println("Escolha uma opção");
             int menu = 0;
-            System.out.println("1 - Médico \n2 - Repositor \n3 - Cadastrar Produto\n4 - Sair");
+            System.out.println("1 - Médico \n2 - Repositor \n3 - Produto\n4 - Sair");
             menu = scanner.nextInt();
             scanner.nextLine();
             if (menu == 1){
@@ -53,8 +54,7 @@ public class Main {
                     System.out.println("Digite o nome do médico:");
                     String nome = scanner.nextLine();
                     System.out.println("Digite a idade do médico:");
-                    int idade = scanner.nextInt();
-                    scanner.nextLine();
+                    String idade = scanner.nextLine();
                     System.out.println("Digite o email corporativo do médico:");
                     String emailCorporativo = scanner.nextLine();
                     System.out.println("Digite o CRM do médico:");
@@ -65,6 +65,8 @@ public class Main {
                     //adicionando novo medico a lista
                     medicos.add(medico);
                 } else if(menu == 2){
+                    System.out.println("Medicos cadastrados");
+                    medicos.forEach(medico -> System.out.println(medico.getNome()));
                     System.out.println("Digite o nome do médico:");
                     String nome = scanner.nextLine();
                     Medico medico = buscas.buscarMedicoPorNome(medicos, nome);
@@ -87,15 +89,24 @@ public class Main {
                     }
                 } else if(menu == 4){
                     int idAmostra = random.nextInt(1000) + 1;
-                    System.out.println("Digite o tipo de amostra (Sangue, Urina ou Fezes): ");
                     Laboratorio lab = null;
-                    String tipoAmostra = scanner.nextLine();
-                    if (tipoAmostra.equalsIgnoreCase("Sangue")){
-                        lab = lab1;
-                    } else if (tipoAmostra.equalsIgnoreCase("Urina")) {
-                        lab = lab2;
-                    } else if (tipoAmostra.equalsIgnoreCase("Fezes")) {
-                        lab = lab3;
+                    String tipoAmostra = null;
+                    while (lab == null) {
+                        System.out.println("Digite o tipo de amostra (Sangue, Urina ou Fezes): ");
+                        tipoAmostra = scanner.nextLine();
+                        if (tipoAmostra.equalsIgnoreCase("Sangue")){
+                            lab = lab1;
+                            break;
+                        } else if (tipoAmostra.equalsIgnoreCase("Urina")) {
+                            lab = lab2;
+                            break;
+                        } else if (tipoAmostra.equalsIgnoreCase("Fezes")) {
+                            lab = lab3;
+                            break;
+                        } else {
+                            System.out.println("Tipo de amostra digitado inválido");
+                        }
+                        String amostra = tipoAmostra;
                     }
                     Date dataColeta = null;
                     while (dataColeta == null) {
@@ -110,8 +121,26 @@ public class Main {
                             System.out.println("Data inválida. Tente novamente.");
                         }
                     }
-                    System.out.println("Digite o nível de prioridade:");
-                    String nivelPrioridade = scanner.nextLine();
+                    String nivelPrioridade = null;
+                    while (nivelPrioridade == null) {
+                        System.out.println("Digite o nível de prioridade (baixo, medio ou alto):");
+                        nivelPrioridade = scanner.nextLine();
+                        if (nivelPrioridade.equalsIgnoreCase("baixo")){
+                            nivelPrioridade = "baixo";
+                            break;
+                        } else if(nivelPrioridade.equalsIgnoreCase("medio")){
+                            nivelPrioridade = "medio";
+                            break;
+                        } else if (nivelPrioridade.equalsIgnoreCase("alto")) {
+                            nivelPrioridade = "alto";
+                            break;
+                        } else {
+                            System.out.println("Nivel de prioriedade digitado inválido");
+                            nivelPrioridade = null;
+                        }
+                    }
+                    System.out.println("Médicos disponíveis em nosso sistema: ");
+                    medicos.forEach(medico -> System.out.println(medico.getNome()));
                     System.out.println("Digite o nome do médico responsável: ");
                     String nomeMedico = scanner.nextLine();
                     Medico medico = buscas.buscarMedicoPorNome(medicos, nomeMedico);
@@ -125,9 +154,9 @@ public class Main {
                         System.out.println("Erro: Médico não encontrado ou amostra não informada.");
                     }
                 } else if (menu == 5){
-                    System.out.println("Digite o tipo de amostra desejado para emitir o diagnostico (Sangue, Fezes ou Urina): ");
-                    String tipoAmostra = scanner.nextLine();
                     while (true) {
+                        System.out.println("Digite o tipo de amostra desejado para emitir o diagnostico (Sangue, Fezes ou Urina): ");
+                        String tipoAmostra = scanner.nextLine();
                         if (tipoAmostra.equalsIgnoreCase("Sangue") || tipoAmostra.equalsIgnoreCase("Urina") || tipoAmostra.equalsIgnoreCase("Fezes")){
                             Amostra amostra = buscas.buscaAmostraPorTipo(amostras, tipoAmostra);
                             System.out.println("Digite o nome do medico responsavel");
@@ -155,7 +184,7 @@ public class Main {
                     System.out.println("Digite o nome do repositor:");
                     String nome = scanner.nextLine();
                     System.out.println("Digite a idade do repositor:");
-                    int idade = scanner.nextInt();
+                    String idade = scanner.nextLine();
                     scanner.nextLine(); // Consumir a quebra de linha
                     System.out.println("Digite o email corporativo do repositor:");
                     String emailCorporativo = scanner.nextLine();
@@ -164,6 +193,8 @@ public class Main {
                     repositores.add(repositor);
                     System.out.println("Repositor cadastrado com sucesso!");
                 } else if(menu == 2){
+                    System.out.println("Repositores cadatrados:");
+                    repositores.forEach(repositor -> repositor.getNome());
                     System.out.println("Digite o nome do repositor que deseja exibir as informações:");
                     String nomeBusca = scanner.nextLine();
                     Repositor repositorEncontrado = buscas.buscarRepositorPorNome(repositores, nomeBusca);
@@ -196,12 +227,16 @@ public class Main {
                         System.out.println("Repositor não encontrado.");
                     }
                 } else if(menu == 4){
-                    System.out.println("Digite o nome do repositor que irá realizar a reposição:");
-                    String nomeBusca = scanner.nextLine();
-                    Repositor repositor = buscas.buscarRepositorPorNome(repositores, nomeBusca);
-                    if (repositor == null) {
-                        System.out.println("Repositor não encontrado.");
-                        break;
+                    Repositor repositor = null;
+                    while (repositor == null) {
+                        System.out.println("Repositores cadastrados: ");
+                        repositores.forEach(r -> System.out.println(r.getNome()));
+                        System.out.println("Digite o nome do repositor que irá realizar a reposição:");
+                        String nomeBusca = scanner.nextLine();
+                        repositor = buscas.buscarRepositorPorNome(repositores, nomeBusca);
+                        if (repositor == null) {
+                            System.out.println("Repositor não encontrado.");
+                        }
                     }
                     System.out.println("Escolha o almoxarifado:");
                     System.out.println("1 - Almoxarifado Lapa");
@@ -216,6 +251,8 @@ public class Main {
                     } else {
                         System.out.println("Opção inválida.");
                     }
+                    System.out.println("Produtos cadastrados: ");
+                    produtos.forEach(produto -> System.out.println(produto.getNomeProduto()));
                     System.out.print("Digite o nome do produto que deseja repor: ");
                     String nomeProdutoBusca = scanner.nextLine();
                     Produto produtoEncontrado = buscas.buscarProdutoPorNome(produtos, nomeProdutoBusca);

@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Produto{
     private int idProduto;
     private String nomeProduto;
@@ -58,7 +56,7 @@ public class Produto{
     public void setCasoUso(String casoUso) {
         this.casoUso = casoUso;
     }
-    public void setQuantidade(int quantidadeIdeal) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
     public void setAltura(int altura) {

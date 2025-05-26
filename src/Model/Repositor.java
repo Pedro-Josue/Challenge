@@ -1,12 +1,10 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Repositor extends Pessoa{
     private int idRepositor;
 
     //construtor
-    public Repositor(String nome, int idade, String emailCorporativo, int idRepositor) {
+    public Repositor(String nome, String idade, String emailCorporativo, int idRepositor) {
         super(nome, idade, emailCorporativo);
         this.idRepositor = idRepositor;
     }
@@ -35,6 +33,6 @@ public class Repositor extends Pessoa{
     }
 
     public void consultarEstoque(Almoxarifado almoxarifado) {
-        System.out.println("O repositor" + getNome() + " verificou a quantidade total de produtos no almoxarifado: " + almoxarifado.getQuantidadeProdutos());
+        System.out.println("O repositor " + getNome() + " verificou a quantidade total de produtos no almoxarifado: " + almoxarifado.getQuantidadeProdutos());
     }
 }

@@ -2,11 +2,11 @@ package Model;
 
 public class Pessoa {
     private String nome;
-    private int idade;
+    private String idade;
     private String emailCorporativo;
 
     //construtor
-    public Pessoa(String nome, int idade, String emailCorporativo) {
+    public Pessoa(String nome, String idade, String emailCorporativo) {
         this.nome = nome;
         this.idade = idade;
         this.emailCorporativo = emailCorporativo;
@@ -15,7 +15,7 @@ public class Pessoa {
     public String getNome() {
         return nome;
     }
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
     public String getEmailCorporativo() {
@@ -25,7 +25,7 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
     }
     public void setEmailCorporativo(String emailCorporativo) {
